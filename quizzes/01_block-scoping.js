@@ -18,14 +18,21 @@ function immutable() {
   return {object: object, array: array}
 }
 // log(immutable())
+// #=> returns {object: {a: 'q'}, array: [1, 3, 4]}
+// We can use Object.freeze if we want to stop object from getting mutated
+// Object.freeze provides shallow immutability
+// which means
+// const a = {b: 1, c: {}}
+// Object.freeze(a)
+// a.c.d = 5 #=> This will result in {b: 1, c: {d: 5}}
 
 function immutableReference() {
   // what is returned?
   const object = {a: 'b'}
-  // object = {a: 'q'}
+  object = {a: 'q'}
   return object
 }
-// log(immutableReference())
+// log(immutableReference()) #=> Throws error as const can't be reassigned
 
 function ifBlock() {
   // what is returned?
@@ -35,7 +42,7 @@ function ifBlock() {
   }
   return {x: x, y: y}
 }
-// log(ifBlock())
+// log(ifBlock()) #=> Throws a reference error
 
 function block() {
   // what is returned?
@@ -46,7 +53,8 @@ function block() {
   }
   return {x: x, y: y}
 }
-// log(block())
+// log(block()) #=> Reference error,
+// you can create a block using {}
 
 function scoped() {
   // what is returned?
@@ -56,7 +64,7 @@ function scoped() {
   }
   return x
 }
-// log(scoped())
+// log(scoped()) #=> 33
 
 function veryScoped() {
   // what is returned?
@@ -70,7 +78,7 @@ function veryScoped() {
   }
   return x
 }
-// log(veryScoped())
+// log(veryScoped()) #=> 23
 
 function temporalDeadZone() {
   console.log(myVar)
