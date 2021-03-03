@@ -6,19 +6,23 @@ function interpolation() {
   // interpolation is done with ${variable}
   const greeting = 'Hello'
   const noun = 'World'
-  return greeting.toUpperCase() + ', ' + noun + '!'
+  // return greeting.toUpperCase() + ', ' + noun + '!'
+
+  return `${greeting.toUpperCase()}, ${noun}!`
 }
 // log(interpolation())
 
 function multiline() {
   // refactor to a single template literal with multiple lines
-  return '\n' + '    this is on a new line\n' + '  '
+  return `
+      this is on a new line
+  `
 }
 // log(multiline())
 
 function escaping() {
   // refactor to a single template literal with multiple lines
-  return 'This is `code`\nand a new line'
+  return `This is \`code\`\nand a new line`
 }
 // log(escaping())
 
@@ -27,7 +31,7 @@ function tagging() {
   const noun = 'human'
   return tag`I would like to say: "${greeting}, ${noun}" to you!`
 
-  function tag() {
+  function tag(stringParts, greetingInterpolation, nounInterpolation) {
     // what are the arguments passed to this function?
     // notice that we're returning arguments. So... We can return ANYTHING. Not just a string!
     return arguments
